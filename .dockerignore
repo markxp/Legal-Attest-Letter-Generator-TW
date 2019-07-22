@@ -1,0 +1,9 @@
+img/
+README.md
+output.pdf
+build/
+LICENSE
+.gitignore
+
+venv/
+1.txt

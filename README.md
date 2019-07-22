@@ -1,13 +1,9 @@
-# Legal Attest Letter Generator - Taiwan #
+# Legal Attest Letter Generator - Taiwan 台灣郵局存證信函產生器 #
 
-This repo forked from [csterryliu](https://github.com/csterryliu/Legal-Attest-Letter-Generator-TW).
-
-It copies some approaches from [his web build](https://github.com/csterryliu/Legal-Attest-Letter-Generator-TW-Django) 
-
-Becasue there are minor changes that may break the original repository, so here it is.
-
-台灣郵局存證信函產生器 (PDF 格式)。  
 A tool for creating a legal attest letter of Taiwan - in PDF format.
+
+This repo forked from [csterryliu](https://github.com/csterryliu/Legal-Attest-Letter-Generator-TW). It copies some approaches from [his web build](https://github.com/csterryliu/Legal-Attest-Letter-Generator-TW-Django)
+Becasue there are minor changes that may break the original repository, so here it is.
 
 ![sample](./img/sample.png)
 
@@ -24,22 +20,26 @@ A tool for creating a legal attest letter of Taiwan - in PDF format.
 
 ## How To Use It ##
 
+### get source code ###
+
+Download or `git clone` this repository.
+
 ### Run Locally ###
 
 #### Prerequisite ####
 
-pip3, python3
+pip3(install w/ python3), [python3](https://www.python.org/downloads/)
 
-*In Debian (set 3.7 to default toolchain with `$ update-alternatives`)
+*In Debian,
 `$ sudo apt install python3 python3-pip python3-venv`
-
-#### get source code ####
-
-`$ git clone ${this-repo}` and change directory to it.
+(optional) set python 3.7 to default toolchain with `$ update-alternatives`
 
 (for development only)
+`$ git clone ${this-repo}`
 `$ python -m venv venv`
 `$ source venv/bin/activate`
+
+change directory into the source code folder.
 
 #### install dependencies ####
 
