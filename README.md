@@ -90,9 +90,9 @@ It consumes an `application/json` object:
 
     {
         config:{
-            senders:[ [person Object] ],
-            receivers: [ [person Object] ],
-            carbonCopy: [ [person Object] ]
+            senders:[ person_Object ],
+            receivers: [ person_Object ],
+            carbonCopy: [ person_Object ]
         },
         content: {
             data: "base64 encoded data string"
