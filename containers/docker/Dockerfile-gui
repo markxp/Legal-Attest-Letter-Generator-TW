@@ -1,0 +1,35 @@
+FROM python:slim-buster as base
+
+FROM base as builder
+RUN mkdir /install
+WORKDIR /workspace
+COPY src /workspace/src
+RUN apt-get -q update && \
+    apt-get install --no-install-recommends -qy libtiff5-dev libjpeg62-turbo-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev libharfbuzz-dev libfribidi-dev tcl8.6-dev tk8.6-dev python-tk && \
+    apt-get clean && \
+    rm  -rf /var/lib/apt/lists/*
+RUN pip install --install-option="--prefix=/install" -r src/requirements.txt
+
+FROM base
+
+ENV WORKSPACE=/workspace
+ENV PYTHONPATH=$WORKSPACE/src
+WORKDIR $WORKSPACE
+
+COPY res res
+COPY src src
+RUN mkdir /tmp/pdfs && \
+    chmod -R 777 $WORKSPACE /tmp/pdfs
+COPY --from=builder /install /usr/local
+RUN useradd user
+
+COPY --from=builder /install /usr/local
+RUN apt-get -q update && \
+    apt-get install --no-install-recommends -qy python3-tk && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+ENV DISPLAY=unix:0
+
+USER user
+ENTRYPOINT ["python", "src/gui.py"]

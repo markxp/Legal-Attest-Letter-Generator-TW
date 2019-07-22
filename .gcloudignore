@@ -1,0 +1,13 @@
+#!include:.gitignore
+
+# git
+.git/**
+.gitignore
+
+# self
+.gcloudignore
+tmp/
+img/
+
+.*
+.*/**

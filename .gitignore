@@ -89,4 +89,7 @@ ENV/
 .ropeproject
 
 # output files
-*.pdf
+output.pdf
+
+# vscode IDE
+.vscode
