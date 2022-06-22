@@ -4,7 +4,7 @@ Constants which will be used in the main logic.
 
 # backward-incompatible change
 VERSION = 'v3.0.0'
-BASE_RES_PATH = 'res'
+BASE_RES_PATH = 'resources'
 LETTER_FORMAT_PATH = BASE_RES_PATH + '/tmpl/tw_lal.pdf'
 DEFAULT_FONT_PATH = BASE_RES_PATH + '/fonts/TW-Kai-98_1.ttf'
 _PDF_INCH = 72
