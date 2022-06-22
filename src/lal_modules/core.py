@@ -139,17 +139,17 @@ def _draw_info_box(painter,
                    receiver_list, receiver_addr_list,
                    cc_list, cc_addr_list):
     painter.set_font(DEFAULT_FONT_PATH, 8)
-    painter.draw_string(CUT_INFO_X_Y[0], CUT_INFO_X_Y[1], u'[請自行剪下貼上]')
+    painter.draw_string(CUT_INFO_X_Y[0], CUT_INFO_X_Y[1], '[請自行剪下貼上]')
     painter.draw_line(BOX_UPPDERLEFT_X_Y[0], BOX_UPPDERLEFT_X_Y[1],
                       BOX_UPPDERRIGHT_X_Y[0], BOX_UPPDERRIGHT_X_Y[1])
     painter.draw_string(QUOTE_X_Y[0], QUOTE_X_Y[1],
-                        u'（寄件人如為機關、團體、學校、公司、商號請加蓋單位圖章及法定代理人簽名或蓋章）')
+                        '（寄件人如為機關、團體、學校、公司、商號請加蓋單位圖章及法定代理人簽名或蓋章）')
     painter.draw_rect(RECT_X_Y_W_H[0], RECT_X_Y_W_H[1],
                       RECT_X_Y_W_H[2], RECT_X_Y_W_H[3])
     painter.set_font(DEFAULT_FONT_PATH, 10)
-    painter.draw_string(CHT_IN_RECT_X_Y[0], CHT_IN_RECT_X_Y[1], u'印')
+    painter.draw_string(CHT_IN_RECT_X_Y[0], CHT_IN_RECT_X_Y[1], '印')
 
-    painter.draw_string(TITLE_START[0], TITLE_START[1], u'一、寄件人')
+    painter.draw_string(TITLE_START[0], TITLE_START[1], '一、寄件人')
     kwargs = {'painter': painter,
               'x_begin': DETAIL_START[0], 'y_begin': DETAIL_START[1]}
     kwargs = fill_name_address(sender_list, sender_addr_list,
@@ -157,17 +157,17 @@ def _draw_info_box(painter,
                                **kwargs)
 
     kwargs['y_begin'] -= TITLE_Y_INTERVAL
-    painter.draw_string(TITLE_START[0], kwargs['y_begin'], u'二、收件人')
+    painter.draw_string(TITLE_START[0], kwargs['y_begin'], '二、收件人')
     kwargs = fill_name_address(receiver_list, receiver_addr_list,
                                _fill_info_if_empty, _fill_info_if_nonempty,
                                **kwargs)
 
     kwargs['y_begin'] -= TITLE_Y_INTERVAL
-    painter.draw_string(TITLE_START[0], kwargs['y_begin'], u'三、')
+    painter.draw_string(TITLE_START[0], kwargs['y_begin'], '三、')
     painter.draw_string(TITLE_START[0]+CC_RECEIVER_FIX_X_Y[0],
-                        kwargs['y_begin']+CC_RECEIVER_FIX_X_Y[1], u'副 本')
+                        kwargs['y_begin']+CC_RECEIVER_FIX_X_Y[1], '副 本')
     painter.draw_string(TITLE_START[0]+CC_RECEIVER_FIX_X_Y[0],
-                        kwargs['y_begin']-CC_RECEIVER_FIX_X_Y[1], u'收件人')
+                        kwargs['y_begin']-CC_RECEIVER_FIX_X_Y[1], '收件人')
     kwargs = fill_name_address(cc_list, cc_addr_list,
                                _fill_info_if_empty, _fill_info_if_nonempty,
                                **kwargs)
@@ -202,10 +202,10 @@ def fill_name_address(namelist, addresslist,
 
 
 def _fill_info_if_empty(**kwargs):
-    kwargs['painter'].draw_string(kwargs['x_begin'], kwargs['y_begin'], u'姓名：')
+    kwargs['painter'].draw_string(kwargs['x_begin'], kwargs['y_begin'], '姓名：')
     kwargs['y_begin'] -= DETAIL_Y_INTERVAL
     kwargs['painter'].draw_string(
-        kwargs['x_begin'], kwargs['y_begin'], u'詳細地址：')
+        kwargs['x_begin'], kwargs['y_begin'], '詳細地址：')
     kwargs['y_begin'] -= DETAIL_Y_INTERVAL
 
 # action
@@ -213,9 +213,9 @@ def _fill_info_if_empty(**kwargs):
 
 def _fill_info_if_nonempty(all_name, address, **kwargs):
     kwargs['painter'].draw_string(kwargs['x_begin'], kwargs['y_begin'],
-                                  u'姓名：' + all_name)
+                                  '姓名：' + all_name)
     kwargs['y_begin'] -= DETAIL_Y_INTERVAL
     kwargs['painter'].draw_string(kwargs['x_begin'], kwargs['y_begin'],
-                                  u'詳細地址：' + address)
+                                  '詳細地址：' + address)
     kwargs['y_begin'] -= DETAIL_Y_INTERVAL
     return kwargs
