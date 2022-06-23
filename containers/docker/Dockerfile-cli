@@ -1,28 +1,21 @@
-FROM python:slim-buster as base
-
-FROM base as builder
-RUN mkdir /install
-WORKDIR /workspace
-COPY src /workspace/src
-RUN apt-get -q update && \
-    apt-get install --no-install-recommends -qy libtiff5-dev libjpeg62-turbo-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev libharfbuzz-dev libfribidi-dev tcl8.6-dev tk8.6-dev python-tk && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-RUN pip install --install-option="--prefix=/install" -r src/requirements.txt
-
-
-FROM base
+FROM python:3.10-slim-bullseye 
 
 ENV WORKSPACE=/workspace
 ENV PYTHONPATH=$WORKSPACE/src
 WORKDIR $WORKSPACE
-
-COPY res res
+RUN apt-get -q update && \
+    apt-get install --no-install-recommends -qy libtiff5-dev libjpeg62-turbo-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev libharfbuzz-dev libfribidi-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+COPY src/requirements-cli.txt /workspace/src/requirements-cli.txt
+COPY src/lal_modules/requirements.txt /workspace/src/lal_modules/requirements.txt
+RUN pip install -r src/requirements-cli.txt
+COPY resources resources
 COPY src src
-RUN mkdir /tmp/pdfs && \
-    chmod -R 777 $WORKSPACE /tmp/pdfs
-RUN useradd user
-COPY --from=builder /install /usr/local
+RUN mkdir /output && \
+    chmod -R 777 $WORKSPACE && \
+    chmod -R 777 /output
 
+RUN useradd user
 USER user
-ENTRYPOINT ["python", "src/cli.py", "--outputFileName=/tmp/pdfs/output.pdf"]
+ENTRYPOINT ["python", "src/cli.py", "--outputFileName=/output/sample.pdf"]
