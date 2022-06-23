@@ -100,6 +100,7 @@ def handler():
     core.clean_temp_files(text, letter)
     return resp
 
-
-port = getenv('PORT', 5000)
-app.run(host="0.0.0.0", port=port)
+# run in production with gunicorn
+if __name__ == '__main__':
+    port = getenv('PORT', 5000)
+    app.run(host="0.0.0.0", port=port)
